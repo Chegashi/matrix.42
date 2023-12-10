@@ -1,3 +1,5 @@
+#!/usr/bin/env pyhton
+
 import sys
 
 sys.path.append('../')
@@ -67,7 +69,7 @@ if __name__ == '__main__':
         v1 = Vector([0, ft_complex(1), 2, 3, 4, 5, ft_complex(0, 6), 7, 8, 9])
         v2 = Vector([9, ft_complex(8), 7, 6, 5, 4, ft_complex(0, 3), 2, 1, 0])
         v1.add(v2)
-        print(f'[0, 1, 2, 3, 4, 5, 6i, 7, 8, 9] + [0, 1, 2, 3, 4, 5, 6i, 7, 8, 9] = {v1} \n')
+        print(f'[0, 1, 2, 3, 4, 5, 6i, 7, 8, 9] + [0, 1, 2, 3, 4, 5, 3i, 7, 8, 9] = {v1} \n')
 
     M_ADD_R =  True
     if M_ADD_R:

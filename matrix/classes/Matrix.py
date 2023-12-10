@@ -42,14 +42,24 @@ class ft_complex():
             return ft_complex(self.re * c, self.img * c)
         return ft_complex(self.re * c.re - self.img * c.img, self.re * c.img + self.img * c.re)
 
-class Matrix():
+    def __truediv__(self, c) -> any:
+        if isinstance(c, int) or isinstance(c, float):
+            return ft_complex(self.re / c, self.img / c)
+        return ft_complex((self.re * c.re + self.img * c.img) / (c.re ** 2 - c.img ** 2),
+                          (self.img * c.re - self.re * c.img) / (c.re ** 2 - c.img ** 2))
 
+    def __rtruediv__(self, c) -> any:
+        return ft_complex((c * self.re) / (self.re ** 2 - self.img ** 2),
+                          (- c * self.img) / self.re ** 2 - self.img ** 2)
+        
+
+class Matrix():
     def __init__(self, data) -> None:
         self.data = data
         self.size = (len(data), len(data[0]))
         self._type_ = "Matrix"
 
-    def size(self) -> tuple:
+    def get_size(self) -> tuple:
         return self.size
 
     def is_squar(self) -> bool:
@@ -75,19 +85,58 @@ class Matrix():
 
     def scl(self, s):
         tmp = [[self.data[i][j] * s for j in range(self.size[1])] for i in range(self.size[0])]
-        self.data = tmp       
+        self.data = tmp
+
+    def mul_mat(self, m):
+        r = [[0] * m.size[1] for _ in range(self.size[0])]
+        for l in range(self.size[0]):
+            for c in range(m.size[1]):
+                for k in range(self.size[1]):
+                    r[l][c] += self.data[l][k] * m.data[k][c]
+        return Matrix(r)
+
+    def mul_vec(self, v):
+        print(self.size)
+        print(v.size)
+        m = Matrix(v.data)
+        return self.mul_mat(m)
 
 class Vector(Matrix):
     def __init__(self, data) -> None:
+        if isinstance(data, int):
+            data = [0] * data
         super().__init__([data])
         self._type_ = "Vectore"
 
     def size(self) -> tuple:
-        return super().size()[0]
+        return self.size[1]
 
     def __str__(self) -> str:
         return '[' + ' '.join(list(map(str, self.data[0]))) + ']'
 
     def reshapeToM(self):
-        self._type_ = "Vector"
+        self._type_ = "Matrix"
 
+    def len(self) -> int:
+        return self.size()[1]
+
+    def dot(self, u) -> int:
+        s = 0
+        for x, y in zip(self.data[0], u.data[0]):
+            s += x * y
+        return s
+
+    def norm_0(self) -> float:
+        return sum([xi ** 2 for xi in self.data[0]])
+
+    def norm_1(self) -> float:
+        return sum([abs(xi) for xi in self.data[0]])
+
+    def norm(self) -> float:
+        return (sum([xi ** 2 for xi in self.data[0]])) ** 0.5
+
+    def norm_inf(self) -> float:
+        return max([abs(xi) for xi in self.data[0]])
+
+    def get_data(self) -> float:
+        return self.data[0]
