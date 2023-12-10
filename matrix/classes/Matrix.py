@@ -96,23 +96,30 @@ class Matrix():
         return Matrix(r)
 
     def mul_vec(self, v):
-        print(self.size)
-        print(v.size)
         m = Matrix(v.data)
         return self.mul_mat(m)
+
+    def trace(self) -> float:
+        tr = 0
+        for i in range(min(self.size[0], self.size[1])):
+            tr += self.data[i][i]
+        return tr
+
+    def transpose(self):
+        return Matrix([[self.data[l][c] for l in range(self.size[0]) ] for c in range(self.size[1])])
 
 class Vector(Matrix):
     def __init__(self, data) -> None:
         if isinstance(data, int):
             data = [0] * data
-        super().__init__([data])
+        super().__init__([[d] for d in data])
         self._type_ = "Vectore"
 
     def size(self) -> tuple:
         return self.size[1]
 
     def __str__(self) -> str:
-        return '[' + ' '.join(list(map(str, self.data[0]))) + ']'
+        return '\n'.join(['[' + str(vi[0]) + ']' for vi in self.data])
 
     def reshapeToM(self):
         self._type_ = "Matrix"
@@ -122,21 +129,30 @@ class Vector(Matrix):
 
     def dot(self, u) -> int:
         s = 0
-        for x, y in zip(self.data[0], u.data[0]):
-            s += x * y
+        for x, y in zip(self.data, u.data):
+            s += x[0] * y[0]
         return s
 
     def norm_0(self) -> float:
-        return sum([xi ** 2 for xi in self.data[0]])
+        return sum([xi[0] ** 2 for xi in self.data])
 
     def norm_1(self) -> float:
-        return sum([abs(xi) for xi in self.data[0]])
+        return sum([abs(xi[0]) for xi in self.data])
 
     def norm(self) -> float:
-        return (sum([xi ** 2 for xi in self.data[0]])) ** 0.5
+        return (sum([xi[0] ** 2 for xi in self.data])) ** 0.5
 
     def norm_inf(self) -> float:
-        return max([abs(xi) for xi in self.data[0]])
+        return max([abs(xi[0]) for xi in self.data])
 
     def get_data(self) -> float:
-        return self.data[0]
+        return [v for l in self.data for v in l  ]
+
+
+
+# z = ft_complex(1,1)
+# x = ft_complex(3,3)
+# # print(z)
+
+# v2 = Vector([x, z])
+# print(v2)

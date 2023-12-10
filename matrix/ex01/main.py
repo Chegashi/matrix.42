@@ -27,18 +27,28 @@ if __name__ == '__main__':
     v1 = Vector([1, 2, 3])
     vi2 = Vector([0, ft_complex(10, 10), -100])
     vi1 = Vector([ft_complex(0, 1), 2, 3])
+
+    print("e1 = [1, 0, 0]\n"
+        "e2 = [0, 1, 0]\n"
+        "e3 = [0, 0, 1]\n"
+    )
+
+    print("_________linear_combination([e1, e2, e3], [10, -2,0.5])_________")
     print(f"{linear_combination([e1, e2, e3], [10, -2,0.5])}")
     # [10.]
     # [-2.]
     # [0.5]
+    print("_________{linear_combination([v1, v2], [10, -2])}_________")
     print(f"{linear_combination([v1, v2], [10, -2])}")
     # [10.]
     # [0.]
     # [230.]
+    print("_________{linear_combination([ei1, ei2, ei3], [10, -2,0.5])}_________")
     print(f"{linear_combination([ei1, ei2, ei3], [10, -2,0.5])}")
     # [10i]
     # [-2i]
     # [0.5i]
+    print("_________{linear_combination([ei1, ei2, ei3], [10, -2,0.5])}_________")
     print(f"{linear_combination([vi1, vi2], [10, -2])}")
     # [10i]
     # [-2i]
