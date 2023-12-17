@@ -8,9 +8,9 @@
 ✅ Exercise 07 - Linear map, Matrix multiplication
 ✅ Exercise 08 - Trace
 ✅ Exercise 09 - Transpose
-⛔ Exercise 10 - row-echelon form
-⛔ Exercise 11 - Determinant
-⛔ Exercise 12 - Inverse
+✅  Exercise 10 - row-echelon form
+✅ Exercise 11 - Determinant
+✅ Exercise 12 - Inverse
 ⛔ Exercise 13 - Rank
 ⛔ Exercise 14 - Bonus: Projection matrix
 ⛔ Exercise 15 - Bonus: Complex vector spaces

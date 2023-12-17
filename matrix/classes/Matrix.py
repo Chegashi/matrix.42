@@ -1,4 +1,5 @@
 #! /dev/env python
+
 class ft_complex():
     def __init__(self, x, y=0) -> None:
         self.re = x
@@ -62,6 +63,13 @@ class Matrix():
     def get_size(self) -> tuple:
         return self.size
 
+    def is_zero(self) -> bool:
+        for i in range(self.size[0]):
+            for j in range(self.size[1]):
+                if self.data: return False
+        return True
+
+
     def is_squar(self) -> bool:
         return self.size[0] == self.size[1]
 
@@ -107,6 +115,65 @@ class Matrix():
 
     def transpose(self):
         return Matrix([[self.data[l][c] for l in range(self.size[0]) ] for c in range(self.size[1])])
+
+
+    def dilatation(self,i , _lambda):
+        self.data[i] = [ _lambda * m for m in self.data[i] ]
+
+    def transvection(self,i ,j , _lambda):
+        for k in range(self.size[1]):
+            self.data[i][k] += self.data[j][k] * _lambda
+
+    def exchange(self, i, j):
+        tmp = self.data[i]
+        self.data[i] = self.data[j]
+        self.data[j] = tmp
+
+    def row_echelon(self):
+        m, n, p, i0 = Matrix(self.data), self.size[0], self.size[1], 0
+        for j in range(p):
+            k = i0
+            while k < n and m.data[k][j] == 0:
+                k += 1
+            if k < n:
+                m.exchange(i0, k)
+                m.dilatation(i0, 1/m.data[i0][j])
+                for i in range(0, n):
+                    if i != i0:
+                        Lambda = - m.data[i][j]
+                        m.transvection(i, i0, Lambda)
+                i0 += 1
+        return m
+
+    def determinant(self):
+        if self.size !=  (2, 2):
+            d = 0
+            for i in range(self.size[0]):
+                coef = -1 if i % 2 else 1
+                T = [row[1:] for row in self.data]
+                del T[i]
+                d += coef * self.data[i][0] * Matrix(T).determinant()
+            return d 
+        else:
+            return self.data[0][0] * self.data[1][1] - self.data[1][0] * self.data[0][1]
+
+    def inverse(self):
+        d = self.determinant()
+        m = self.adj()
+        m.scl(1./d)
+        return m
+
+    def adj(self):
+        c = [[0] * self.size[1] for _ in range(self.size[0])]
+        for i in range(self.size[0]):
+            for j in range(self.size[1]):
+                T = [row[:j] + row[j+1:] for row in self.data]
+                T = T[:i] + T[i+1:]
+                m = Matrix(T)
+                coef = -1 if (i + j)% 2 else 1
+                c[i][j] = m.determinant() * coef
+                _c = Matrix(c)
+        return _c.transpose()
 
 class Vector(Matrix):
     def __init__(self, data) -> None:
