@@ -69,7 +69,6 @@ class Matrix():
                 if self.data: return False
         return True
 
-
     def is_squar(self) -> bool:
         return self.size[0] == self.size[1]
 
@@ -175,6 +174,17 @@ class Matrix():
                 _c = Matrix(c)
         return _c.transpose()
 
+    def rank(self):
+        r = self.row_echelon()
+        rank = 0
+        for l in range(r.size[0]):
+            for c in range(r.size[1]):
+                if r.data[l][c] != 0:
+                    rank += 1
+                    break
+        return rank
+
+
 class Vector(Matrix):
     def __init__(self, data) -> None:
         if isinstance(data, int):
@@ -214,12 +224,3 @@ class Vector(Matrix):
 
     def get_data(self) -> float:
         return [v for l in self.data for v in l  ]
-
-
-
-# z = ft_complex(1,1)
-# x = ft_complex(3,3)
-# # print(z)
-
-# v2 = Vector([x, z])
-# print(v2)
