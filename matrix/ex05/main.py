@@ -9,7 +9,11 @@ from classes.Matrix import Vector
 from classes.Matrix import ft_complex
 
 def angle_cos(u, v) -> float:
-    return u.dot(v) / ((u.norm_0() * v.norm_0()) ** 0.5)
+    try:
+        d = u.dot(v) / ((u.norm_0() * v.norm_0()) ** 0.5)
+        return d
+    except Exception:
+        return float('inf') 
 
 def main():
     u = Vector([1., 0.])
