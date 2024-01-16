@@ -47,6 +47,8 @@ if __name__ == '__main__':
         v2 = Vector([9, 8, 7, 6, 5, 4, 3, 2, 1, 0])
 
         try:
+                print(f'[-21, 21] + [9, 8, 7, 6, 5, 4, 3, 2, 1, 0] = \n \n')
+
                 v1.add(v2)
         except Exception as e:
                 TypeError (f"")
@@ -79,10 +81,11 @@ if __name__ == '__main__':
 
         print('\033[31m-- Matrix part (addition) ERROR-- \033[0m')        
         try:
+                print(f'[[21, 21], [21, 21] + [9, 8, 7, 6, 5, 4, 3, 2, 1, 0] = \n \n')
                 m1.add(m2)
         except Exception as e:
                 TypeError (f"")
-                print(f'ERROR: {e} :[[21, 21], [21, 21]] + [[0, 0], [0, 0], [21, 21], [21, 21]] \n')
+                print(f'ERROR: {e} :[[21, 21], [21, 21]] +[[0, 0], [0, 0], [21, 21], [21, 21]] \n')
 
         print('\033[35mVector part (substract)\033[0m')
         v1 = Vector([0, 0])
@@ -120,6 +123,7 @@ if __name__ == '__main__':
         v2 = Vector([9, 8, 7, 6, 5, 4, 3, 2, 1, 0])
 
         try:
+                print(f'[-21, 21] - [9, 8, 7, 6, 5, 4, 3, 2, 1, 0] = \n')
                 v1.sub(v2)
         except Exception as e:
                 TypeError (f"")
@@ -151,6 +155,7 @@ if __name__ == '__main__':
         m2 = Matrix([[0, 0], [0, 0], [0, 0], [0, 0]])
 
         try:
+                print(f'[[21, 21], [21, 21]] - [[0, 0], [0, 0], [0, 0], [0, 0]] = \n')
                 m1.sub(m2)
         except Exception as e:
                 TypeError (f"")
