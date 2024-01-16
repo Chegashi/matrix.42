@@ -5,13 +5,48 @@ import sys
 sys.path.append('../')
 
 from classes.Matrix import Matrix
-from classes.Matrix import Vector
-from classes.Matrix import ft_complex
 
 def main():
    u = Matrix([
-      [ 1., -1.],
-      [-1., 1.],
+      [0, 0],
+      [0, 0],
+   ])
+   print(u.determinant())
+   u = Matrix([
+      [ 1., 0],
+      [0, 1],
+   ])
+   print(u.determinant())
+   u = Matrix([
+      [ 2, 0],
+      [0, 2],
+   ])
+   print(u.determinant())
+   u = Matrix([
+      [ 1., 1.],
+      [1., 1.],
+   ])
+   print(u.determinant())
+   u = Matrix([
+      [0, 1],
+      [1., 0],
+   ])
+   print(u.determinant())
+   u = Matrix([
+      [1., 2.],
+      [3., 4],
+   ])
+   print(u.determinant())
+   u = Matrix([
+      [-7, 5.],
+      [4, 6],
+   ])
+   print(u.determinant())
+
+   u = Matrix([
+      [1, 0, 0],
+      [0, 1, 0],
+      [0, 0, 1]
       ])
    print(u.determinant())
    # 0
@@ -40,8 +75,6 @@ def main():
       ])
    print(u.determinant())
    # // 1032
-
-    
 
 if __name__ == '__main__':
     main()

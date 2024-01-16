@@ -9,6 +9,21 @@ from classes.Matrix import Vector
 from classes.Matrix import ft_complex
 
 def main():
+   print("Matrix([[0, 0], [0, 0]]).mul_vec(Vector([10, 10]))")
+   print(Matrix([[0, 0], [0, 0]]).mul_vec(Vector([10, 10])))
+   
+   print("Matrix([[1, 0], [0, 1]]).mul_vec(Vector([10, 10]))")
+   print(Matrix([[1, 0], [0, 1]]).mul_vec(Vector([10, 10])))
+   
+   print("Matrix([[1, 1], [1, 1]]).mul_vec(Vector([4, 2]))")
+   print(Matrix( [[1, 1], [1, 1]]).mul_vec(Vector([4, 2])))
+
+   print("Matrix([[2, 0], [0, 2]]).mul_vec(Vector([2, 1]))")
+   print(Matrix( [[2, 0], [0, 2]]).mul_vec(Vector([2, 1])))
+
+   print("Matrix([[0.5, 0], [0, 0.5]]).mul_vec(Vector([4, 2]))")
+   print(Matrix( [[0.5, 0], [0, 0.5]]).mul_vec(Vector([4, 2])))
+
    u = Matrix([[1., 0.], [0., 1.]])
    v = Vector([4., 2.])
    print("_____________[[1., 0.], [0., 1.]]).mul_vec([4., 2.])")

@@ -140,20 +140,16 @@ class Matrix():
 
     def row_echelon(self:any) -> any:
         m, n, p, i0 = Matrix(self.data), self.size[0], self.size[1], 0
-        for j in range(p):
-            k = i0
-            while k < n and m.data[k][j] == 0:
-                k += 1
-            if k < n:
-                m.exchange(i0, k)
-                if (m.data[i0][j]):
-                    m.dilatation(i0, 1/m.data[i0][j])
-
-                for i in range(0, n):
-                    if i != i0:
-                        Lambda = m.data[i][j]
-                        m.transvection(i, i0, Lambda)
-                i0 += 1
+        for i in range(min(n, p)):
+            if m.data[i][i]:
+                m.data[i] = [aii / m.data[i][i] for aii in m.data[i]]
+                k = i + 1
+                while k < n:
+                    if m.data[k][i]:
+                        new_l = [aki / m.data[k][i] for aki in m.data[k]]
+                        m.data[k] = [new_l[l] - m.data[i][l] for l in range(p)]
+                    k += 1
+                    
         return m
 
     def determinant(self:any) -> any:
@@ -167,12 +163,21 @@ class Matrix():
             return d
         else:
             return self.data[0][0] * self.data[1][1] - self.data[1][0] * self.data[0][1]
-
+    
     def inverse(self:any) -> any:
         d = self.determinant()
-        m = self.adj()
-        m.scl(1./d)
-        return m
+        if d != 0:
+            if self.size[0] == self.size[1]:
+                if self.size[0] >= 2:
+                    if self.size[0] == 2:
+                        c = self.data
+                        m = Matrix([[c[1][1], -c[0][1]],
+                               [-c[1][0], c[0][0]]])
+                    else:
+                        m = self.adj()
+                    m.scl(1./d)
+                    return m
+        TypeError("cannot calculate non matrice caree")
 
     def adj(self) -> any:
         c = [[0] * self.size[1] for _ in range(self.size[0])]

@@ -9,31 +9,29 @@ from classes.Matrix import Vector
 from classes.Matrix import ft_complex
 
 def main():
-    s = "_________"
-    u = Vector([0., 0.])
-    v = Vector([1., 1.])
-    print(f"{s}print([0., 0.].dot([1., 1.])){s}")
-    print(u.dot(v))
-    # # // 0.0
+    print("Vector([0, 0]).dot(Vector([0, 0]))")
+    print( Vector([0, 0]).dot(Vector([0, 0])))
+    print('_______________________________________')
 
-    v = Vector([1., 1.])
-    u = Vector([1., 1.])
-    print(f"{s}print([1., 1.].dot([1., 1.])){s}")
-    print(u.dot(v))
-    # # // 2.0
+    print("Vector([1, 0]).dot(Vector([0, 0]))")
+    print( Vector([1, 0]).dot(Vector([0, 0])))
+    print('_______________________________________')
 
-    u = Vector([-1., 6.])
-    v = Vector([3., 2.])
-    print(f"{s}print([-1., 6.].dot([3., 2.])){s}")
-    print(u.dot(v))
-    # // 9.0
-    try:
-        u = Vector([-1., 6., 3., 2.])
-        v = Vector([3., 2.])
-        print(u.dot(v))
-    except Exception as e:
-            TypeError (f"")
-            print(f'ERROR: {e} :[-1., 6., 3., 2.] . [3., 2.] \n')
+    print("Vector([1, 0]).dot(Vector([1, 0]))")
+    print( Vector([1, 0]).dot(Vector([1, 0])))
+    print('_______________________________________')
+    
+    print("Vector([1, 0]).dot(Vector([0, 1]))")
+    print( Vector([1, 0]).dot(Vector([0, 1])))
+    print('_______________________________________')
+
+    print("Vector([1, 1]).dot(Vector([1, 1]))")
+    print( Vector([1, 1]).dot(Vector([1, 1])))
+    print('_______________________________________')
+
+    print("Vector([4, 2]).dot(Vector([2, 1]))")
+    print( Vector([4, 2]).dot(Vector([2, 1])))
+    print('_______________________________________')
 
 if __name__ == '__main__':
     main()
