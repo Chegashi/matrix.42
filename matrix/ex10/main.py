@@ -1,7 +1,6 @@
 #!/usr/bin/env pyhton
 
 import sys
-import numpy as np
 sys.path.append('../')
 
 from classes.Matrix import Matrix
